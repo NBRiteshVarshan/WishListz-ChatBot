@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Wishlistz ChatBot</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      height: 600px;
+      background: white;
+      border-radius: 0;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .header {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pic {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .refresh-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      opacity: 0.6;
+      color: #1a1a1a;
+    }
+
+    .chatbox {
+      flex: 1;
+      padding: 20px 15px;
+      overflow-y: auto;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 18px;
+      max-width: 75%;
+      font-size: 15px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .user {
+      background: #dc2626;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+
+    .bot {
+      background: #f5f5f5;
+      color: #1a1a1a;
+      border-bottom-left-radius: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .bot-logo {
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bot-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bot-content {
+      flex: 1;
+    }
+
+    .bot-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .chat-input-container {
+      padding: 12px 15px;
+      background: white;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .chat-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 24px;
+      padding: 10px 14px;
+      gap: 10px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .chat-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      color: #1a1a1a;
+      padding: 0;
+    }
+
+    .chat-input::placeholder {
+      color: #999;
+    }
+
+    .input-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: #666;
+      flex-shrink: 0;
+    }
+
+    .send-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      color: #666;
+      flex-shrink: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <div class="pic">
+        <img src="logo.png" alt="pic">
+      </div>
+
+      <div class="header-text">Wishlistz</div>
+    </div>
+
+    <div class="pic">
+        <img src="refresh.png" alt="pic">
+      </div>
+  </div>
+  <div class="chatbox" id="chatbox">
+    <div class="msg bot">
+      <div class="bot-logo">
+        <img src="logo.png" />
+      </div>
+
+      <div class="bot-content">
+        <div class="bot-header">
+          <span>Wishlistz</span>
+        </div>
+        <div class="bot-message-text">Hi! What can I help you with?</div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-container">
+    <div class="chat-input-wrapper">
+      <input type="text" id="userInput" class="chat-input" placeholder="Message..." />
+      <div class="pic">
+        <img src="Smile.png" alt="pic">
+      </div>
+      <div class="pic">
+        <img src="Send.png" alt="pic">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
