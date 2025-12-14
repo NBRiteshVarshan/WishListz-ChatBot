@@ -140,8 +140,8 @@
     .bot-header {
       display: flex;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
+      gap: 8px;
+      margin-bottom: 6px;
       font-size: 13px;
       font-weight: 600;
       color: #1a1a1a;
@@ -176,21 +176,6 @@
       color: #999;
     }
 
-    .input-icon {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      color: #666;
-      flex-shrink: 0;
-    }
-
-    .send-icon {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      color: #666;
-      flex-shrink: 0;
-    }
 
   </style>
 </head>
@@ -207,7 +192,7 @@
     </div>
 
     <div class="pic">
-        <img src="refresh.png" alt="pic">
+        <button id="RefreshBtn"><img src="refresh.png" alt="pic"></button>
       </div>
   </div>
   <div class="chatbox" id="chatbox">
@@ -228,15 +213,92 @@
     <div class="chat-input-wrapper">
       <input type="text" id="userInput" class="chat-input" placeholder="Message..." />
       <div class="pic">
-        <img src="Smile.png" alt="pic">
-      </div>
-      <div class="pic">
-        <img src="Send.png" alt="pic">
+        <button id="SendBtn"><img src="Send.png" alt="pic"></button>
       </div>
     </div>
   </div>
 
 </div>
+<script>
+
+  const chatbox = document.getElementById("chatbox");
+  const input = document.getElementById("userInput");
+  const sendBtn = document.getElementById("SendBtn");
+  const refreshBtn = document.getElementById("RefreshBtn");
+
+
+  function addMessage(text, sender) {
+    const div = document.createElement("div");
+
+    if (sender === "user") {
+      div.className = "msg user";
+      div.textContent = text;
+    } else {
+      div.className = "msg bot";
+      div.innerHTML = `
+        <div class="bot-logo"><img src="logo.png"></div>
+        <div class="bot-content">
+          <div class="bot-header"><span>Wishlistz</span></div>
+          <div>${text}</div>
+        </div>
+      `;
+    }
+
+    chatbox.appendChild(div);
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  sendBtn.onclick = function () {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, "user");
+
+    setTimeout(() => {
+      addMessage("This is a sample bot response.", "bot");
+    }, 400);
+
+    input.value = "";
+  };
+
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      sendBtn.click();
+    }
+  });
+  refreshBtn.addEventListener("click", () => {
+    chatbox.innerHTML = "";
+
+    const botMsg = document.createElement("div");
+    botMsg.className = "msg bot";
+
+    const logoDiv = document.createElement("div");
+    logoDiv.className = "bot-logo";
+    logoDiv.innerHTML = `<img src="logo.png">`;
+
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "bot-content";
+
+    const header = document.createElement("div");
+    header.className = "bot-header";
+    header.innerText = "Wishlistz";
+
+    const text = document.createElement("div");
+    text.className = "bot-message-text";
+    text.innerText = "Hi! What can I help you with?";
+
+    contentDiv.appendChild(header);
+    contentDiv.appendChild(text);
+
+    botMsg.appendChild(logoDiv);
+    botMsg.appendChild(contentDiv);
+
+    chatbox.appendChild(botMsg);
+});
+
+
+
+</script>
 
 </body>
 </html>
