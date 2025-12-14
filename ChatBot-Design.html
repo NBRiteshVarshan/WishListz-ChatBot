@@ -198,6 +198,30 @@
       border-radius: 50%;
     }
 
+    #chatLauncher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #chatLauncher img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .container.minimised {
+      display: none;
+    }
 
 
   </style>
@@ -220,9 +244,8 @@
 </div>
 
     </div>
-
     <div class="pic">
-        <button id="RefreshBtn"><img src="refresh.png" alt="pic"></button>
+        <button id="MinimiseBtn"><img src="minimise.png" alt="pic"></button>
       </div>
   </div>
   <div class="chatbox" id="chatbox">
@@ -249,13 +272,20 @@
   </div>
 
 </div>
+
+<div id="chatLauncher">
+  <img src="logo.png" alt="pic">
+</div>
+
+
 <script>
 
   const chatbox = document.getElementById("chatbox");
   const input = document.getElementById("userInput");
   const sendBtn = document.getElementById("SendBtn");
-  const refreshBtn = document.getElementById("RefreshBtn");
-
+  const minimiseBtn = document.getElementById("MinimiseBtn");
+  const chatLauncher = document.getElementById("chatLauncher");
+  const container = document.querySelector(".container");
 
   function addMessage(text, sender) {
     const div = document.createElement("div");
@@ -296,35 +326,17 @@
       sendBtn.click();
     }
   });
-  refreshBtn.addEventListener("click", () => {
-    chatbox.innerHTML = "";
 
-    const botMsg = document.createElement("div");
-    botMsg.className = "msg bot";
+  minimiseBtn.addEventListener("click", () => {
+    container.classList.add("minimised");
+    chatLauncher.style.display = "flex";
+  });
 
-    const logoDiv = document.createElement("div");
-    logoDiv.className = "bot-logo";
-    logoDiv.innerHTML = `<img src="logo.png">`;
+  chatLauncher.addEventListener("click", () => {
+    container.classList.remove("minimised");
+    chatLauncher.style.display = "none";
+  });
 
-    const contentDiv = document.createElement("div");
-    contentDiv.className = "bot-content";
-
-    const header = document.createElement("div");
-    header.className = "bot-header";
-    header.innerText = "Wishlistz";
-
-    const text = document.createElement("div");
-    text.className = "bot-message-text";
-    text.innerText = "Hi! What can I help you with?";
-
-    contentDiv.appendChild(header);
-    contentDiv.appendChild(text);
-
-    botMsg.appendChild(logoDiv);
-    botMsg.appendChild(contentDiv);
-
-    chatbox.appendChild(botMsg);
-});
 
 
 
