@@ -249,3 +249,42 @@
       justify-content: center;
       box-shadow: 0 4px 10px rgba(157,43,50,.4);
     }
+    .chat-input-container {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  background: #fff;
+  width: 100%;
+  max-width: 700px;
+}
+
+.attach-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  color: #666;
+}
+
+.attach-icon:hover {
+  color: #8b1d1d;
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.send-btn {
+  background: #8b1d1d;
+  border: none;
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+}
